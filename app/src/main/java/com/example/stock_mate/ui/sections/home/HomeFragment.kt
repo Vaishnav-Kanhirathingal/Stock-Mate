@@ -2,57 +2,60 @@ package com.example.stock_mate.ui.sections.home
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.consumeWindowInsets
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.ModalDrawerSheet
 import androidx.compose.material3.ModalNavigationDrawer
+import androidx.compose.material3.NavigationDrawerItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.stock_mate.values.CustomSharedValues
 
 object HomeFragment {
+    @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun HomeFragment(modifier: Modifier = Modifier) {
         ModalNavigationDrawer(
-            drawerContent = { HomeDrawer() },
+            drawerContent = { HomeDrawer(modifier = Modifier) },
             content = {
                 Scaffold(
                     modifier = modifier,
                     topBar = {
-                        Row(
-                            modifier = Modifier.fillMaxWidth(),
-                            verticalAlignment = Alignment.CenterVertically,
-                            content = {
-                                Image(
-                                    imageVector = Icons.Filled.Menu,
-                                    contentDescription = "side menu button",
-                                    alignment = Alignment.Center,
-                                    contentScale = ContentScale.None,
-                                    modifier = Modifier
-                                        .size(CustomSharedValues.Dimensions.minimumTouchSize)
-                                        .clickable(
-                                            onClick = {
-                                                TODO()
-                                            }
+                        TopAppBar(
+                            title = { Text(text = "title") },
+                            navigationIcon = {
+                                IconButton(
+                                    onClick = { /*TODO*/ },
+                                    content = {
+                                        Image(
+                                            imageVector = Icons.Filled.Menu,
+                                            contentDescription = "side menu button",
+                                            alignment = Alignment.Center,
+                                            contentScale = ContentScale.None,
+                                            modifier = Modifier
+                                                .size(CustomSharedValues.Dimensions.minimumTouchSize)
+                                                .clickable(onClick = { TODO() })
                                         )
-                                )
-                                Text(
-                                    text = "Home",
-                                    modifier = Modifier.weight(weight = 1f)
+                                    }
                                 )
                             }
                         )
@@ -82,13 +85,40 @@ object HomeFragment {
     }
 
     @Composable
-    fun HomeDrawer() {
-        // TODO: add content
+    fun HomeDrawer(modifier: Modifier) {
+        ModalDrawerSheet(
+            modifier = modifier,
+            content = {
+                Text(text = "title")
+                Column(
+                    verticalArrangement = Arrangement.spacedBy(4.dp),
+                    content = {
+                        NavigationDrawerItem(
+                            icon = {
+                                Icon(
+                                    imageVector = Icons.Default.Add,
+                                    contentDescription = null
+                                )
+                            },
+                            label = { Text(text = "button label") },
+                            selected = true,
+                            onClick = { /*TODO*/ }
+                        )
+                    }
+                )
+            }
+        )
     }
 }
 
+//@Preview(device = Devices.PIXEL, showSystemUi = true)
+//@Composable
+//fun HomePreview() {
+//    HomeFragment.HomeFragment()
+//}
+
 @Preview
 @Composable
-fun HomePreview() {
-    HomeFragment.HomeFragment()
+fun DrawerPreview() {
+    HomeFragment.HomeDrawer(modifier = Modifier)
 }
