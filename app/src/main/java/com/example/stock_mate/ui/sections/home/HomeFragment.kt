@@ -26,6 +26,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.stock_mate.values.CustomSharedValues
@@ -33,7 +34,10 @@ import com.example.stock_mate.values.CustomSharedValues
 object HomeFragment {
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
-    fun HomeFragment(modifier: Modifier = Modifier) {
+    fun HomeFragment(
+        modifier: Modifier = Modifier,
+        toDetailFragment: () -> Unit
+    ) {
         ModalNavigationDrawer(
             drawerContent = { HomeDrawer(modifier = Modifier) },
             content = {
@@ -41,7 +45,11 @@ object HomeFragment {
                     modifier = modifier,
                     topBar = {
                         TopAppBar(
-                            title = { Text(text = "title") },
+                            title = {
+                                Text(
+                                    text = "Home"
+                                )
+                            },
                             navigationIcon = {
                                 IconButton(
                                     onClick = { /*TODO*/ },
@@ -62,7 +70,7 @@ object HomeFragment {
                     },
                     floatingActionButton = {
                         FloatingActionButton(
-                            onClick = { TODO() },
+                            onClick = { toDetailFragment() },
                             content = {
                                 Icon(
                                     imageVector = Icons.Filled.Add,
@@ -111,14 +119,17 @@ object HomeFragment {
     }
 }
 
-//@Preview(device = Devices.PIXEL, showSystemUi = true)
-//@Composable
-//fun HomePreview() {
-//    HomeFragment.HomeFragment()
-//}
-
-@Preview
+@Preview(device = Devices.PIXEL, showSystemUi = true)
 @Composable
-fun DrawerPreview() {
-    HomeFragment.HomeDrawer(modifier = Modifier)
+fun HomePreview() {
+    HomeFragment.HomeFragment(
+        modifier = Modifier,
+        toDetailFragment = {}
+    )
 }
+
+//@Preview
+//@Composable
+//fun DrawerPreview() {
+//    HomeFragment.HomeDrawer(modifier = Modifier)
+//}
