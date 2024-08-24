@@ -20,6 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.example.stock_mate.values.CustomSharedValues
 
 object DetailFragment {
+    const val PATH = "detailScreen"
+
     object Keys {
         const val STOCK_COLLECTION_KEY = "STOCK_COLLECTION_KEY"
     }

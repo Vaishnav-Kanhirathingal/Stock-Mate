@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.dp
 import com.example.stock_mate.values.CustomSharedValues
 
 object HomeFragment {
+    const val PATH = "homeScreen"
+
     @OptIn(ExperimentalMaterial3Api::class)
     @Composable
     fun HomeFragment(

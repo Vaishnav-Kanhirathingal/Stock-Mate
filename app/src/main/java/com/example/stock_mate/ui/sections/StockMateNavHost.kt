@@ -15,23 +15,23 @@ object StockMateNavHost {
         NavHost(
             modifier = modifier,
             navController = navController,
-            startDestination = Destinations.HomeScreen.PATH,
+            startDestination = HomeFragment.PATH,
             builder = {
                 //----------------------------------------------------------------------------------home
                 composable(
-                    route = Destinations.HomeScreen.PATH,
+                    route = HomeFragment.PATH,
                     content = {
                         HomeFragment.HomeFragment(
                             modifier = Modifier,
                             toDetailFragment = {
-                                navController.navigate(Destinations.DetailScreen.PATH)
+                                navController.navigate(DetailFragment.PATH)
                             }
                         )
                     }
                 )
                 //--------------------------------------------------------------------------------detail
                 composable(
-                    route = Destinations.DetailScreen.PATH,
+                    route = DetailFragment.PATH,
 //                    arguments = listOf(
 //                        navArgument(
 //                            name = DetailFragment.Keys.STOCK_COLLECTION_KEY,
@@ -47,16 +47,4 @@ object StockMateNavHost {
             }
         )
     }
-
-    object Destinations {
-        object HomeScreen {
-            const val PATH = "homeScreen"
-        }
-
-        object DetailScreen {
-            const val PATH = "detailScreen"
-        }
-    }
 }
-
-// TODO: move path variable
